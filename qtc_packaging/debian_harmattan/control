@@ -1,0 +1,14 @@
+Source: status-menu-extensions
+Section: user/other
+Priority: optional
+Maintainer: CODeRUS <coderusinbox@gmail.com>
+Build-Depends: debhelper (>= 5), libqt4-dev
+Standards-Version: 3.7.3
+Homepage: <insert the upstream URL, if relevant>
+
+Package: status-menu-extensions
+Architecture: armel
+Depends: system-ui
+Conflicts: unrestricted-system-ui
+Description: Status Menu Extensions
+XSBC-Maemo-Display-Name: Status Menu Extensions

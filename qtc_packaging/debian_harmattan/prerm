@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -e
+
+gconftool -s -t str /apps/status-menu-extensions/prerm $1
+
+exit 0

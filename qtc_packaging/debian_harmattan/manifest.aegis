@@ -1,0 +1,21 @@
+<aegis>
+    <request policy="add">
+        <credential name="TrackerReadAccess" />
+        <credential name="TrackerWriteAccess" />
+        <credential name="GRP::metadata-users" />
+        <credential name="Cellular" />
+
+        <credential name="GRP::video" />
+        <credential name="GRP::pulse-access"/>
+
+        <for path="system-ui::/usr/bin/sysuid" />
+    </request>
+    <request>
+            <credential name="UID::root" />
+            <credential name="GID::root" />
+            <credential name="dsme::DeviceStateControl" />
+            <credential name="mce::DeviceModeControl" />
+
+            <for path="/opt/status-menu-extensions/bin/extensions_daemon" />
+    </request>
+</aegis>

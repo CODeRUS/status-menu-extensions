@@ -1,0 +1,33 @@
+#!/bin/sh
+
+set_applet()
+{
+    template_path="/usr/share/meegotouch/applicationextensions/statusindicatormenu-${1}.desktop"
+    template_data="[Desktop Entry]\nType=X-MeeGoApplicationExtension\nName=Status Indicator Menu Applet\n\n[X-MeeGoApplicationExtension]\nInterface=com.meego.core.MStatusIndicatorMenuExtensionInterface/1.0\nExtension=libstatusindicatormenu-${2}.so"
+    echo -e $template_data > $template_path
+}
+
+set -e
+
+gconftool -s -t str /apps/status-menu-extensions/postinst $1
+
+if [ "$1" == "configure" ]; then
+    echo "Post-installation script configure ..."
+fi
+
+set_applet call extensions
+
+#chown -R root:root /var/cache/meegotouch/themedaemon/
+#imgcachegen --list /opt/status-menu-extensions/icons.cache
+#chown -R user:users /var/cache/meegotouch/themedaemon/
+
+if [ -n "`initctl status xsession/sysuid | grep running`" ]
+then
+    /sbin/initctl restart xsession/sysuid
+else
+    /sbin/initctl start xsession/sysuid
+fi
+
+echo "Please reboot after installation, if you see red squares"
+
+exit 0
